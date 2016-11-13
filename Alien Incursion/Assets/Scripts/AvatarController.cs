@@ -7,7 +7,7 @@ public class AvatarController : MonoBehaviour {
 	public bool jump = false;
 	public float maxSpeed = 10f;
 	public float moveForce = 365f;
-	public float jumpForce = 500f;
+	public float jumpForce = 1500f;
 	public Transform groundCheck;
 
 	private bool grounded = false;
