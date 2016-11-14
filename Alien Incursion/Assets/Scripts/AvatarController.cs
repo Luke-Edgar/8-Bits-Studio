@@ -5,13 +5,17 @@ public class AvatarController : MonoBehaviour {
 
 	public bool facingRight = true;
 	public bool jump = false;
+
 	public float maxSpeed = 10f;
 	public float moveForce = 365f;
-	public float jumpForce = 500f;
-	public Transform groundCheck;
+	public float jumpForce = 150f;
+
 
 	private bool grounded = false;
+    private bool canDoubleJump;
+
 	private Rigidbody2D rb2d;
+    public Transform groundCheck;
 
 
 	// Use this for initialization
@@ -25,9 +29,21 @@ public class AvatarController : MonoBehaviour {
 	{
 		grounded = Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer ("Ground"));
 
-		if (Input.GetButtonDown ("Jump") && grounded) {
-			jump = true;
-		}
+		if (Input.GetButtonDown ("Jump")) {
+            if (grounded)
+            {
+                rb2d.AddForce(Vector2.up * jumpForce); 
+                canDoubleJump = true;
+            } else
+            {
+                if(canDoubleJump)
+                {
+                    canDoubleJump = false;
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+                    rb2d.AddForce(Vector2.up * jumpForce);
+                }
+            }
+        }
 	}
 
 	void FixedUpdate ()
@@ -45,11 +61,8 @@ public class AvatarController : MonoBehaviour {
 		else if (h < 0 && facingRight)
 			Flip ();
 
-		if (jump) {
-			rb2d.AddForce(new Vector2(0f, jumpForce));
-			jump = false;
-		}
 	}
+
 
 	void Flip ()
 	{
