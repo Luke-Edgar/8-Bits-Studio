@@ -10,7 +10,6 @@ public class AvatarController : MonoBehaviour {
 	public float moveForce = 365f;
 	public float jumpForce = 150f;
 
-
 	private bool grounded = false;
     private bool canDoubleJump;
 
