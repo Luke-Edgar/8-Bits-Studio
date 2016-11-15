@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AvatarController : MonoBehaviour {
 
-	public bool facingRight = true;
+	public bool facingRight;
 	public bool jump = false;
 
 	public float maxSpeed = 10f;
