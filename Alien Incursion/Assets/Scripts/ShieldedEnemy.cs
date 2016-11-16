@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShieldedEnemy : MonoBehaviour {
 
-	public float chargeTime = 4;
+	public float chargeTime;
 	public float enemySpeed;
 	public bool facingRight;
 
@@ -31,8 +31,6 @@ public class ShieldedEnemy : MonoBehaviour {
 				Invoke("Flip", 2);
 			}
 			startChargeTime = Time.time + chargeTime;
-            //test hurt player
-            //playerHealth.HurtPlayer(100f);
         }
 	}
 
