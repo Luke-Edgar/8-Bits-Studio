@@ -1,0 +1,232 @@
+fileFormatVersion: 2
+guid: af4f9887747f84646bd614dd264dc16e
+timeCreated: 1478651816
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Torso
+    21300002: Left_Arm
+    21300004: Left_Hand
+    21300006: M4A5
+    21300008: Right_Leg_Upper
+    21300010: Left_Leg_Upper
+    21300012: Right_Arm
+    21300014: Right_Leg_Lower
+    21300016: Left_Leg_Lower
+    21300018: Avatar
+    21300020: Right_Foot
+    21300022: Left_Foot
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 1024
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Torso
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 325
+        width: 174
+        height: 271
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Left_Arm
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 501
+        width: 143
+        height: 91
+      alignment: 9
+      pivot: {x: 0.12250983, y: 0.6927899}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Left_Hand
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 556
+        width: 56
+        height: 36
+      alignment: 9
+      pivot: {x: 0.15056992, y: 0.21884833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M4A5
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 387
+        width: 235
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Right_Leg_Upper
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 148
+        width: 68
+        height: 140
+      alignment: 9
+      pivot: {x: 0.40289998, y: 0.8725867}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Left_Leg_Upper
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 181
+        width: 134
+        height: 112
+      alignment: 9
+      pivot: {x: 0.2930464, y: 0.7613607}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Right_Arm
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 233
+        width: 161
+        height: 111
+      alignment: 9
+      pivot: {x: 0.1584918, y: 0.76005405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Right_Leg_Lower
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 13
+        width: 68
+        height: 140
+      alignment: 9
+      pivot: {x: 0.5606427, y: 0.85346115}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Left_Leg_Lower
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 34
+        width: 65
+        height: 135
+      alignment: 9
+      pivot: {x: 0.47885272, y: 0.85127914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Avatar
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 152
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Right_Foot
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 31
+        width: 76
+        height: 70
+      alignment: 9
+      pivot: {x: 0.25583282, y: 0.86327904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Left_Foot
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 23
+        width: 69
+        height: 56
+      alignment: 9
+      pivot: {x: 0.24102297, y: 0.8436429}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
