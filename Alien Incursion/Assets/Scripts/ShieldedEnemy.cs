@@ -8,7 +8,9 @@ public class ShieldedEnemy : MonoBehaviour {
 	public float enemySpeed;
 	public bool facingRight;
 
-	float startChargeTime;
+    public AvatarController player;
+
+    float startChargeTime;
 	bool canFlip = true;
 	Rigidbody2D enemyRB2D;
 
@@ -32,13 +34,24 @@ public class ShieldedEnemy : MonoBehaviour {
 				Invoke("Flip", 2);
 			}
 			startChargeTime = Time.time + chargeTime;
-		}
+            //test hurt player
+            player.HurtPlayer(10);
+        }
 	}
 
-	void OnTriggerStay2D (Collider2D other)
+    void OnCollisionEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            player.HurtPlayer(10);
+        }
+    }
+
+
+    void OnTriggerStay2D (Collider2D other)
 	{
 		if (other.tag == "Player") {
-			if (startChargeTime < Time.time) {
+            if (startChargeTime < Time.time) {
 				if(!facingRight) enemyRB2D.AddForce(new Vector2(-1,0)*enemySpeed);
 				else enemyRB2D.AddForce(new Vector2(1,0)*enemySpeed);
 			}
