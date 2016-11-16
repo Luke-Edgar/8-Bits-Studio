@@ -3,12 +3,9 @@ using System.Collections;
 
 public class ShieldedEnemy : MonoBehaviour {
 
-	public int playerDamage;
 	public float chargeTime = 4;
 	public float enemySpeed;
 	public bool facingRight;
-
-    public AvatarController player;
 
     float startChargeTime;
 	bool canFlip = true;
@@ -35,18 +32,9 @@ public class ShieldedEnemy : MonoBehaviour {
 			}
 			startChargeTime = Time.time + chargeTime;
             //test hurt player
-            player.HurtPlayer(10);
+            //playerHealth.HurtPlayer(100f);
         }
 	}
-
-    void OnCollisionEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            player.HurtPlayer(10);
-        }
-    }
-
 
     void OnTriggerStay2D (Collider2D other)
 	{
