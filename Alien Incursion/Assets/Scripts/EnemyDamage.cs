@@ -3,14 +3,14 @@ using System.Collections;
 
 public class EnemyDamage : MonoBehaviour {
 
-	public PlayerHealth player;
+	public PlayerHealth playerHealth;
 
 	public float damage = 10f;
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        playerHealth = FindObjectOfType<PlayerHealth>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,7 +22,7 @@ public class EnemyDamage : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
         	Debug.Log ("Player Damage");
-            player.HurtPlayer(damage);
+            playerHealth.HurtPlayer(damage);
         }
     }
 

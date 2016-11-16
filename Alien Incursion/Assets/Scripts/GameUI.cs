@@ -11,14 +11,15 @@ public class GameUI : MonoBehaviour
 {
     const float COUNTDOWN_DEFAULT = 600f;
 
-	public PlayerHealth player;
+    public PlayerHealth playerHealth;
+    public AvatarController player;
 
     public Text TxtTimer;
     public Text TxtAmmo;
     public Text TxtScore;
     public RectTransform LifeBar;
     public RectTransform ArmorBar;
-    
+
     public Image LivesCounter;
     public Sprite Lives_0;
     public Sprite Lives_1;
@@ -40,6 +41,9 @@ public class GameUI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        player = FindObjectOfType<AvatarController>();
+
         StartLevel();
     }
 
@@ -47,25 +51,27 @@ public class GameUI : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
 
             TogglePause();
             return;
         }
 
-        if (player.playerAlive)
+        if (playerHealth.playerAlive)
         {
             TimeSpan ts = TimeSpan.FromSeconds(timeRemaining);
             string formatTime = string.Format("{0:D2} : {1:D2}", ts.Minutes, ts.Seconds);
             TxtTimer.text = formatTime;
-            TxtScore.text = player.score.ToString();
+            TxtScore.text = String.Format("{0:n0}", player.score);
             TxtAmmo.text = "x " + player.ammo[0].ToString();
 
             timeRemaining -= Time.deltaTime;
             if (timeRemaining < 0)
             {
-                player.KillPlayer();
+                playerHealth.KillPlayer();
             }
+
 
 
         }
@@ -97,10 +103,10 @@ public class GameUI : MonoBehaviour
 
     public void UpdateGameUI()
     {
-        LifeBar.localScale = new Vector3(1, player.currentHealth / 100, 0);
-        ArmorBar.localScale = new Vector3(1, player.currentArmour / 100, 0);
+        LifeBar.localScale = new Vector3(1, playerHealth.currentHealth / 100, 0);
+        ArmorBar.localScale = new Vector3(1, playerHealth.currentArmour / 100, 0);
 
-        switch (player.playerLives)
+        switch (playerHealth.playerLives)
         {
             case 5:
                 LivesCounter.sprite = Lives_5;
@@ -126,8 +132,7 @@ public class GameUI : MonoBehaviour
 
     public void EndGame()
     {
-        if (isPaused) TogglePause();
-        SceneManager.LoadScene("Gameover");
+        if (isPaused) TogglePause();        ScoreSystem.LastScore = player.score;        SceneManager.LoadScene("Gameover");
 
     }
     public void TogglePause()

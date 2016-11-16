@@ -18,7 +18,10 @@ public class PlayerHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		currentHealth = maxHealth;
+        game = FindObjectOfType<GameUI>();
+        manager = FindObjectOfType<LevelManager>();
+
+        currentHealth = maxHealth;
 		currentArmour = startArmour;
 	}
 	
@@ -73,6 +76,10 @@ public class PlayerHealth : MonoBehaviour {
         }
         else
         {
+
+            //remove this extra call once respawn works agian
+            game.UpdateGameUI();
+            //
             manager.Respawn();
             game.UpdateGameUI();
         }
