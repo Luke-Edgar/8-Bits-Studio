@@ -28,12 +28,19 @@ public class AvatarController : MonoBehaviour {
 
     public GameUI game;
 
+    // Firing weapon
+
+    public Transform weaponMuzzle;
+    public GameObject projectile;
+    public float fireRate = 0.5f;
+    float nextFire = 0f;
+
 
     // Use this for initialization
     void Awake () 
 	{
-		rb2d = GetComponent<Rigidbody2D>();
-        game = FindObjectOfType<GameUI>();
+		rb2d = GetComponent<Rigidbody2D> ();
+        game = FindObjectOfType<GameUI> ();
 
     }
 	
@@ -80,6 +87,10 @@ public class AvatarController : MonoBehaviour {
 		else if (h < 0 && facingRight)
 			Flip ();
 
+		// Player firing
+
+		if(Input.GetAxisRaw("Fire1") > 0) fireProjectile();
+
 	}
 
 
@@ -91,5 +102,16 @@ public class AvatarController : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 
+	void fireProjectile ()
+	{
+		if (Time.time > nextFire) {
+			nextFire = Time.time + fireRate;
+			if (facingRight) {
+			Instantiate(projectile, weaponMuzzle.position, Quaternion.Euler (new Vector3 (0,0,-95f)));
+			} else if (!facingRight) {
+			Instantiate(projectile, weaponMuzzle.position, Quaternion.Euler (new Vector3 (0,0,95f)));
+			}
+		}
+	}
 
 }
