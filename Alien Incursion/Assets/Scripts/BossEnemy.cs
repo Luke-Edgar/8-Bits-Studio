@@ -16,7 +16,8 @@ public class BossEnemy : MonoBehaviour {
     public float fireRate = 5f;
     float nextFire = 0f;
     float range;
-    float minDistance = 40f;
+	float minDistance = 20f;
+    float maxDistance = 50f;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,7 @@ public class BossEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
@@ -37,14 +38,6 @@ public class BossEnemy : MonoBehaviour {
 				Flip();
 			}
 		}
-
-		target = other.transform;
-
-		range = Vector2.Distance (transform.position, target.position);
-
-		if (range > minDistance) {
-			transform.position = Vector2.MoveTowards(transform.position, target.position, enemySpeed);
-		}
 	}
 
     void OnTriggerStay2D (Collider2D other)
@@ -52,6 +45,22 @@ public class BossEnemy : MonoBehaviour {
 		if (other.tag == "Player") {
 			fireProjectile ();
 		}
+
+		target = other.transform;
+
+		range = Vector2.Distance (transform.position, target.position);
+
+		if (range < minDistance) {
+			if (!facingRight)
+				enemyRB2D.AddForce (new Vector2 (1, 0) * enemySpeed);
+			else
+				enemyRB2D.AddForce (new Vector2 (-1, 0) * enemySpeed);
+		} else if (range > maxDistance) {
+				if (!facingRight)
+					enemyRB2D.AddForce (new Vector2 (-1, 0) * enemySpeed);
+				else
+					enemyRB2D.AddForce (new Vector2 (1, 0) * enemySpeed);
+			}
 	}
 
 	void Flip ()

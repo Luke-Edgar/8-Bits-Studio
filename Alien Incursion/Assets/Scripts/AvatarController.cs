@@ -6,7 +6,9 @@ public class AvatarController : MonoBehaviour {
 
    
     public bool facingRight;
+    public bool disableInput = false;
 	public bool jump = false;
+    public bool canDoubleJump = false;
 
 	public float maxSpeed = 10f;
 	public float moveForce = 365f;
@@ -21,7 +23,6 @@ public class AvatarController : MonoBehaviour {
 
 
     private bool grounded = false;
-    private bool canDoubleJump;
 
 	private Rigidbody2D rb2d;
     public Transform groundCheck;
@@ -32,7 +33,7 @@ public class AvatarController : MonoBehaviour {
 
     public Transform weaponMuzzle;
     public GameObject projectile;
-    public float fireRate = 0.5f;
+    public float fireRate = 0.2f;
     float nextFire = 0f;
 
 
@@ -51,24 +52,26 @@ public class AvatarController : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Jump")) {
 
-            //test score -- remove this
-            score = score + 10;
-            //
+			if (disableInput) {
+				return;
+			} else if (!disableInput) {
+				//test score -- remove this
+				score = score + 10;
+				//
 
-
-            if (grounded)
-            {
-                rb2d.AddForce(Vector2.up * jumpForce);
-                canDoubleJump = true;
-            } else
-            {
-                if(canDoubleJump)
-                {
-                    canDoubleJump = false;
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
-                    rb2d.AddForce(Vector2.up * jumpForce);
-                }
-            }
+				if (grounded) {
+					rb2d.AddForce (Vector2.up * jumpForce);
+					canDoubleJump = true;
+				} else {
+					if (canDoubleJump) {
+						canDoubleJump = false;
+						rb2d.velocity = new Vector2 (rb2d.velocity.x, 0);
+						rb2d.AddForce (Vector2.up * jumpForce);
+					} else {
+						return;
+					}
+				}
+			}
         }
 	}
 
@@ -76,21 +79,25 @@ public class AvatarController : MonoBehaviour {
 	{
 		float h = Input.GetAxis ("Horizontal");
 
-		if (h * rb2d.velocity.x < maxSpeed)
-			rb2d.AddForce (Vector2.right * h * moveForce);
+		if (disableInput) {
+			return;
+		} else if (!disableInput) {
+			if (h * rb2d.velocity.x < maxSpeed)
+				rb2d.AddForce (Vector2.right * h * moveForce);
 
-		if (Mathf.Abs (rb2d.velocity.x) > maxSpeed)
-			rb2d.velocity = new Vector2 (Mathf.Sign (rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
+			if (Mathf.Abs (rb2d.velocity.x) > maxSpeed)
+				rb2d.velocity = new Vector2 (Mathf.Sign (rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
 
-		if (h > 0 && !facingRight)
-			Flip ();
-		else if (h < 0 && facingRight)
-			Flip ();
+			if (h > 0 && !facingRight)
+				Flip ();
+			else if (h < 0 && facingRight)
+				Flip ();
 
-		// Player firing
+			// Player firing
 
-		if(Input.GetAxisRaw("Fire1") > 0) fireProjectile();
-
+			if (Input.GetAxisRaw ("Fire1") > 0)
+				fireProjectile ();
+		}
 	}
 
 
@@ -112,6 +119,11 @@ public class AvatarController : MonoBehaviour {
 			Instantiate(projectile, weaponMuzzle.position, Quaternion.Euler (new Vector3 (0,0,95f)));
 			}
 		}
+	}
+
+	public void RemoveForce ()
+	{
+		rb2d.velocity = new Vector2(0 , 0);
 	}
 
 }
