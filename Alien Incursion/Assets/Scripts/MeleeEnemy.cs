@@ -26,9 +26,9 @@ public class MeleeEnemy : MonoBehaviour {
 	{
 		if (other.tag == "Player") {
 			if (facingRight && other.transform.position.x < transform.position.x) {
-				Invoke("Flip", 2);
+				Invoke("Flip", 1);
 				} else if (!facingRight && other.transform.position.x > transform.position.x) {
-				Invoke("Flip", 2);
+				Invoke("Flip", 1);
 			}
 			startChargeTime = Time.time + chargeTime;
         }
@@ -37,7 +37,7 @@ public class MeleeEnemy : MonoBehaviour {
     void OnTriggerStay2D (Collider2D other)
 	{
 		if (other.tag == "Player") {
-            if (startChargeTime < Time.time) {
+            if (startChargeTime <= Time.time) {
 				if(!facingRight) enemyRB2D.AddForce(new Vector2(-1,0)*enemySpeed);
 				else enemyRB2D.AddForce(new Vector2(1,0)*enemySpeed);
 			}

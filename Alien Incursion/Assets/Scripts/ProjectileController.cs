@@ -14,13 +14,18 @@ public class ProjectileController : MonoBehaviour {
 		avatar = FindObjectOfType<AvatarController> ();
 
 		if (avatar.facingRight) 
-			myRB.AddForce (new Vector2 (1f, -0.1f) * projectileSpeed, ForceMode2D.Impulse);
+			myRB.AddForce (new Vector2 (1f, -0.03f) * projectileSpeed, ForceMode2D.Impulse);
 		else if (!avatar.facingRight) 
-			myRB.AddForce(new Vector2(-1f, -0.1f) * projectileSpeed, ForceMode2D.Impulse);
+			myRB.AddForce(new Vector2(-1f, -0.03f) * projectileSpeed, ForceMode2D.Impulse);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void RemoveForce ()
+	{
+		myRB.velocity = new Vector2(0 , 0);
 	}
 }

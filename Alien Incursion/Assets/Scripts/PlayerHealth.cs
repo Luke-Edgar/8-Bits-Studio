@@ -62,7 +62,7 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         game.UpdateGameUI();
-        Debug.Log("Player Taking Damage");
+        //Debug.Log("Player Taking Damage");
 
     }
 

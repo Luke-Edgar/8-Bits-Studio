@@ -6,9 +6,11 @@ public class EnemyDamage : MonoBehaviour {
 	public PlayerHealth playerHealth;
 
 	public float damage = 10f;
+    public float hitRate = 0.5f;
+    float nextHit = 0f;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         playerHealth = FindObjectOfType<PlayerHealth>();
     }
 	
@@ -21,9 +23,19 @@ public class EnemyDamage : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-        	Debug.Log ("Player Damage");
             playerHealth.HurtPlayer(damage);
+			nextHit = Time.time + hitRate;
         }
     }
+
+    void OnCollisionStay2D (Collision2D coll)
+	{
+		if (coll.gameObject.tag == "Player") {
+			if (Time.time > nextHit) {
+				nextHit = Time.time + hitRate;
+				playerHealth.HurtPlayer(damage);
+			}
+		}
+	}
 
 }

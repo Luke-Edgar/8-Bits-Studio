@@ -132,7 +132,9 @@ public class GameUI : MonoBehaviour
 
     public void EndGame()
     {
-        if (isPaused) TogglePause();        ScoreSystem.LastScore = player.score;        SceneManager.LoadScene("Gameover");
+        if (isPaused) TogglePause();
+        ScoreSystem.LastScore = player.score;
+        SceneManager.LoadScene("Gameover");
 
     }
     public void TogglePause()

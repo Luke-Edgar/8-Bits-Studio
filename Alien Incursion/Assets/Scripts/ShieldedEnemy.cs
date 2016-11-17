@@ -37,7 +37,7 @@ public class ShieldedEnemy : MonoBehaviour {
     void OnTriggerStay2D (Collider2D other)
 	{
 		if (other.tag == "Player") {
-            if (startChargeTime < Time.time) {
+            if (startChargeTime <= Time.time) {
 				if(!facingRight) enemyRB2D.AddForce(new Vector2(-1,0)*enemySpeed);
 				else enemyRB2D.AddForce(new Vector2(1,0)*enemySpeed);
 			}
