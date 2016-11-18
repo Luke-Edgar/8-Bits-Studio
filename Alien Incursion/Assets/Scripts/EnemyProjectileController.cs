@@ -11,12 +11,13 @@ public class EnemyProjectileController : MonoBehaviour {
 	void Awake ()
 	{
 		myRB = GetComponent<Rigidbody2D> ();
-		boss = FindObjectOfType<BossEnemy> ();
+        boss = (BossEnemy)this.gameObject.GetComponent<BossEnemy>();
 
-		if (boss.facingRight) 
+		if (boss.facingRight) {
 			myRB.AddForce (new Vector2 (1f, 0) * projectileSpeed, ForceMode2D.Impulse);
-		else if (!boss.facingRight) 
-			myRB.AddForce(new Vector2(-1f, 0) * projectileSpeed, ForceMode2D.Impulse);
+		} else if (!boss.facingRight) {
+			myRB.AddForce (new Vector2 (-1f, 0) * projectileSpeed, ForceMode2D.Impulse);
+		}
 	}
 	
 	// Update is called once per frame

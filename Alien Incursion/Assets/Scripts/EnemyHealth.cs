@@ -75,9 +75,7 @@ public class EnemyHealth : MonoBehaviour {
 		} else if (doubleJumpDrop) {
 			upgradeDrop.DropDoubleJump ();
 		} else if (armorUpgradeDrop) {
-			upgradeDrop.ArmourUpgradeDrop ();
-		} else {
-			return;
+			upgradeDrop.DropArmourUpgrade ();
 		}
 
 		Destroy (this.gameObject);
