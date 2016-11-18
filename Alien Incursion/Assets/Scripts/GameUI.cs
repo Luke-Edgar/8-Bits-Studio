@@ -9,7 +9,7 @@ using System;
 
 public class GameUI : MonoBehaviour
 {
-    const float COUNTDOWN_DEFAULT = 600f;
+    const float COUNTDOWN_DEFAULT = 240f;
 
     public PlayerHealth playerHealth;
     public AvatarController player;
@@ -29,9 +29,12 @@ public class GameUI : MonoBehaviour
     public Sprite Lives_5;
     public CanvasGroup PauseScreen;
     public CanvasGroup InventoryBar;
+    public CanvasGroup DialogBox;
+
 
     private float timeRemaining;
     private bool isPaused = false;
+    private bool isShowingDialog = false;
 
     private Vector2 middleScreen = new Vector2(0.0f, 0.0f);
     private Vector2 offScreen = new Vector2(-10000.0f, -10000.0f);
@@ -43,6 +46,8 @@ public class GameUI : MonoBehaviour
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
         player = FindObjectOfType<AvatarController>();
+        DialogBox = GameObject.Find("DialogBox").GetComponent<CanvasGroup>();
+
 
         StartLevel();
     }
@@ -54,10 +59,20 @@ public class GameUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
-            TogglePause();
-            return;
+            if (isShowingDialog)
+                HideDialog();
+            else
+            {
+                TogglePause();
+                return;
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.Return) && isShowingDialog)
+        {
+            HideDialog();
+        }
+
 
         if (playerHealth.playerAlive)
         {
@@ -65,6 +80,11 @@ public class GameUI : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             if (timeRemaining < 0)
             {
+                //timeout will be end of game
+                playerHealth.playerLives = 0;
+                //remove the above line to just reset time and respawn
+                timeRemaining = COUNTDOWN_DEFAULT;
+
                 playerHealth.KillPlayer();
             }
 
@@ -79,17 +99,19 @@ public class GameUI : MonoBehaviour
         cg.alpha = 1.0f;
         RectTransform tempRect = cg.GetComponent<RectTransform>();
         tempRect.anchoredPosition = middleScreen;
+        cg.gameObject.SetActive(true);
     }
     private void Hide(CanvasGroup cg)
     {
         cg.alpha = 0.0f;
         RectTransform tempRect = cg.GetComponent<RectTransform>();
         tempRect.anchoredPosition = offScreen;
+        cg.gameObject.SetActive(false);
     }
 
     private void StartLevel()
     {
-        timeRemaining = 600f;
+        timeRemaining = COUNTDOWN_DEFAULT;
 
     }
 
@@ -161,6 +183,7 @@ public class GameUI : MonoBehaviour
         InventoryBar.alpha = 1.0f;
         InventoryBar.interactable = true;
         InventoryBar.blocksRaycasts = true;
+
     }
 
     public void HideInventory()
@@ -168,7 +191,32 @@ public class GameUI : MonoBehaviour
         InventoryBar.alpha = 0.0f;
         InventoryBar.interactable = false;
         InventoryBar.blocksRaycasts = false;
+
+        //unselect the invetory button
+        GameObject.Find("ScreenOverlay").SetActive(true);
+        GameObject es = GameObject.Find("EventSystem");
+        es.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+
+    }
+    public void ShowDialog(string dialogue)
+    {
+        isShowingDialog = true;
+        Time.timeScale = 0;
+        player.disableInput = true;
+        Text txt = DialogBox.gameObject.GetComponentInChildren<Text>();
+        txt.text = dialogue;
+        Show(DialogBox);
+
+    }
+    public void HideDialog()
+    {
+        isShowingDialog = false;
+        Time.timeScale = 1;
+        player.disableInput = false;
+        Hide(DialogBox);
     }
 
 }
+
+
 

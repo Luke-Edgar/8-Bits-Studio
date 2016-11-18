@@ -13,6 +13,7 @@ public class BossEnemy : MonoBehaviour {
     public Transform weaponMuzzle;
     public Transform target;
     public GameObject projectile;
+    public GameObject thisProjectile;
     public float fireRate = 5f;
     float nextFire = 0f;
     float range;
@@ -76,10 +77,13 @@ public class BossEnemy : MonoBehaviour {
 		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			if (facingRight) {
-			Instantiate(projectile, weaponMuzzle.position, Quaternion.Euler (new Vector3 (0,0,0)));
+                thisProjectile = (GameObject)Instantiate(projectile, weaponMuzzle.position, Quaternion.Euler (new Vector3 (0,0,0)));
 			} else if (!facingRight) {
-			Instantiate(projectile, weaponMuzzle.position, Quaternion.Euler (new Vector3 (0,0,180f)));
+                thisProjectile = (GameObject) Instantiate(projectile, weaponMuzzle.position, Quaternion.Euler (new Vector3 (0,0,180f)));
 			}
-		}
+            thisProjectile.GetComponent<EnemyProjectileController>().boss = this;
+            thisProjectile.GetComponent<EnemyProjectileController>().DoAwake();
+
+        }
 	}
 }

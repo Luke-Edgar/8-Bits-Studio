@@ -5,6 +5,7 @@ using System;
 public class PlayerHealth : MonoBehaviour {
 
 	public float maxHealth = 100f;
+    //maxArmour can be increased with armour upgrade
     public float maxArmour = 25f;
 
     public float currentHealth;
@@ -77,9 +78,6 @@ public class PlayerHealth : MonoBehaviour {
         else
         {
 
-            //remove this extra call once respawn works agian
-            game.UpdateGameUI();
-            //
             manager.Respawn();
             game.UpdateGameUI();
         }

@@ -154,4 +154,10 @@ public class AvatarController : MonoBehaviour
         ammo[2] += ammoAmount;
     }
 
+    public bool HasLowAmmo()
+    {
+        if (ammo[selectedWeapon] < 30) return true;
+        return false;
+    }
+
 }
