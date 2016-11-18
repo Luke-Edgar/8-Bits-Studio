@@ -8,7 +8,7 @@ public class AvatarController : MonoBehaviour {
     public bool facingRight;
     public bool disableInput = false;
 	public bool jump = false;
-    public bool canDoubleJump = false;
+	public bool doubleJumpUnlocked = false;
 
 	public float maxSpeed = 10f;
 	public float moveForce = 365f;
@@ -22,7 +22,8 @@ public class AvatarController : MonoBehaviour {
     public string [] weaponName = { "M4", "Ray Gun", "SFG" };
 
 
-    private bool grounded = false;
+	bool grounded;
+    bool canDoubleJump;
 
 	private Rigidbody2D rb2d;
     public Transform groundCheck;
@@ -62,7 +63,7 @@ public class AvatarController : MonoBehaviour {
 				if (grounded) {
 					rb2d.AddForce (Vector2.up * jumpForce);
 					canDoubleJump = true;
-				} else {
+				} else if (doubleJumpUnlocked) {
 					if (canDoubleJump) {
 						canDoubleJump = false;
 						rb2d.velocity = new Vector2 (rb2d.velocity.x, 0);
@@ -70,6 +71,8 @@ public class AvatarController : MonoBehaviour {
 					} else {
 						return;
 					}
+				} else {
+					return;
 				}
 			}
         }
@@ -123,7 +126,14 @@ public class AvatarController : MonoBehaviour {
 
 	public void RemoveForce ()
 	{
-		rb2d.velocity = new Vector2(0 , 0);
+		rb2d.velocity = new Vector2 (0, 0);
+	}
+
+	public void AddAmmo (int ammoAmount)
+	{
+		ammo[0] += ammoAmount;
+		ammo[1] += ammoAmount;
+		ammo[2] += ammoAmount;
 	}
 
 }

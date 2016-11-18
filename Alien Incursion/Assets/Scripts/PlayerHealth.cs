@@ -5,7 +5,7 @@ using System;
 public class PlayerHealth : MonoBehaviour {
 
 	public float maxHealth = 100f;
-    public float maxArmour = 100f;
+    public float maxArmour = 25f;
 
     public float currentHealth;
     public float currentArmour;
@@ -89,7 +89,7 @@ public class PlayerHealth : MonoBehaviour {
 	public void Spawn()
     {
 		currentHealth = maxHealth;
-		currentArmour = startArmour;
+		currentArmour = maxArmour;
         playerAlive = true;
     }
 
@@ -97,5 +97,23 @@ public class PlayerHealth : MonoBehaviour {
     {
         HurtPlayer(10);
 
-    }
+	}
+
+	public void AddHealth (float healthAmount)
+	{
+    	currentHealth += healthAmount;
+    	if (currentHealth > maxHealth) currentHealth = maxHealth;
+	}
+
+	public void AddArmour (float armourAmount)
+	{
+    	currentArmour += armourAmount;
+    	if (currentArmour > maxArmour) currentArmour = maxArmour;
+	}
+
+	public void IncreaseMaxArmour (float increaseMaxArmour)
+	{
+    	maxArmour += increaseMaxArmour;
+    	currentArmour = maxArmour;
+	}
 }
