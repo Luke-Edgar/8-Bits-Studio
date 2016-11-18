@@ -9,6 +9,7 @@ public class Gameover : MonoBehaviour
 {
 
     public Text TxtScore;
+    public InputField nameEntry;
 
     // Use this for initialization
     void Start()
@@ -28,7 +29,7 @@ public class Gameover : MonoBehaviour
         if (ss != null)
         {
             ScoreSystem scoreSys = (ScoreSystem)ss.GetComponent(typeof(ScoreSystem));
-            scoreSys.AddScore("Fix-Me", ScoreSystem.LastScore);
+            scoreSys.AddScore(nameEntry.text, ScoreSystem.LastScore);
         }
 
         SceneManager.LoadScene("Menu");

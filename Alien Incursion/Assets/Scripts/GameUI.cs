@@ -50,6 +50,7 @@ public class GameUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateGameUI();
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -60,19 +61,12 @@ public class GameUI : MonoBehaviour
 
         if (playerHealth.playerAlive)
         {
-            TimeSpan ts = TimeSpan.FromSeconds(timeRemaining);
-            string formatTime = string.Format("{0:D2} : {1:D2}", ts.Minutes, ts.Seconds);
-            TxtTimer.text = formatTime;
-            TxtScore.text = String.Format("{0:n0}", player.score);
-            TxtAmmo.text = "x " + player.ammo[0].ToString();
 
             timeRemaining -= Time.deltaTime;
             if (timeRemaining < 0)
             {
                 playerHealth.KillPlayer();
             }
-
-
 
         }
 
@@ -105,6 +99,13 @@ public class GameUI : MonoBehaviour
     {
         LifeBar.localScale = new Vector3(1, playerHealth.currentHealth / 100, 0);
         ArmorBar.localScale = new Vector3(1, playerHealth.currentArmour / 100, 0);
+
+        TimeSpan ts = TimeSpan.FromSeconds(timeRemaining);
+        string formatTime = string.Format("{0:D2} : {1:D2}", ts.Minutes, ts.Seconds);
+        TxtTimer.text = formatTime;
+        TxtScore.text = String.Format("{0:n0}", player.score);
+        TxtAmmo.text = "x " + player.ammo[0].ToString();
+
 
         switch (playerHealth.playerLives)
         {

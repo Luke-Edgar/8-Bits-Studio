@@ -17,6 +17,7 @@ public class MenuUI : MonoBehaviour
     private Vector2 offScreen = new Vector2(-10000.0f, -10000.0f);
 
 
+
     void Start()
     {
         //Show(cgPressStartButton);
@@ -80,4 +81,3 @@ public class MenuUI : MonoBehaviour
     }
 
 }
-

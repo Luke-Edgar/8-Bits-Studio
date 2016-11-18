@@ -24,11 +24,11 @@ public class ScoreSystem : MonoBehaviour
             scores[i] = new scoreentry();
         }
 
-        scores[0].AddScore("Fab", 25000);
-        scores[1].AddScore("Luke", 24950);
-        scores[2].AddScore("Dean", 21234);
-        scores[3].AddScore("Subra", 105);
-        scores[4].AddScore("Jake", 1);
+        scores[0].AddScore("Fab", 4000);
+        scores[1].AddScore("Luke", 3000);
+        scores[2].AddScore("Dean", 1000);
+        scores[3].AddScore("Subra", 500);
+        scores[4].AddScore("Jake", 100);
 
     }
 
