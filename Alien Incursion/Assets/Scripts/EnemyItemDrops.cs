@@ -5,7 +5,6 @@ public class EnemyItemDrops : MonoBehaviour {
 
 	public GameObject healthPickup;
 	public EnemyHealth enemyHealth;
-    public GameObject health ;
 
 	// Use this for initialization
 	public void Awake () {
