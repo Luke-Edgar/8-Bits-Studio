@@ -31,8 +31,9 @@ public class EnemyHealth : MonoBehaviour {
 
 
         currentHealth = enemyMaxHealth;
-		itemDrop = FindObjectOfType<EnemyItemDrops>();
-		upgradeDrop = FindObjectOfType<EnemyUpgradeDrops>();
+		//itemDrop = FindObjectOfType<EnemyItemDrops>();
+        itemDrop = (EnemyItemDrops)this.gameObject.GetComponent<EnemyItemDrops>();
+        upgradeDrop = FindObjectOfType<EnemyUpgradeDrops>();
 	}
 	
 	// Update is called once per frame

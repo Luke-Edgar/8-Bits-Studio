@@ -3,14 +3,16 @@ using System.Collections;
 
 public class EnemyItemDrops : MonoBehaviour {
 
-	GameObject healthPickup;
+	public GameObject healthPickup;
 	public EnemyHealth enemyHealth;
+    public GameObject health ;
 
 	// Use this for initialization
 	public void Awake () {
 		healthPickup = Resources.Load("HealthPickup", typeof(GameObject)) as GameObject;
-		enemyHealth = FindObjectOfType<EnemyHealth>();
-	}
+        enemyHealth = (EnemyHealth)this.gameObject.GetComponent<EnemyHealth>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,6 +20,6 @@ public class EnemyItemDrops : MonoBehaviour {
 	}
 
 	public void DropItem() {
-		Instantiate(healthPickup, enemyHealth.transform.position, enemyHealth.transform.rotation);
-	}
+		Instantiate(healthPickup, enemyHealth.transform.position, enemyHealth.transform.rotation);        
+    }
 }
