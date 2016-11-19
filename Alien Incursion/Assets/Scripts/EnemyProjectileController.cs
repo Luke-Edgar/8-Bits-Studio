@@ -16,7 +16,6 @@ public class EnemyProjectileController : MonoBehaviour {
         //boss = GetComponent<BossEnemy>();
         //set when instantiated in BossEnemy.cs
 
-
 		if (boss.facingRight) {
 			myRB.AddForce (new Vector2 (1f, 0) * projectileSpeed, ForceMode2D.Impulse);
 		} else if (!boss.facingRight) {

@@ -9,7 +9,9 @@ public class AvatarController : MonoBehaviour
     public bool facingRight;
     public bool disableInput = false;
     public bool jump = false;
-    public bool doubleJumpUnlocked = false;
+	public bool doubleJumpUnlocked = false;
+	public bool keycard = false;
+    public bool selfDestruct = false;
 
     public float maxSpeed = 10f;
     public float moveForce = 365f;

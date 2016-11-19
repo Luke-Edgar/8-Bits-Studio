@@ -77,7 +77,6 @@ public class PlayerHealth : MonoBehaviour {
         }
         else
         {
-
             manager.Respawn();
             game.UpdateGameUI();
         }

@@ -9,7 +9,7 @@ using System;
 
 public class GameUI : MonoBehaviour
 {
-    const float COUNTDOWN_DEFAULT = 240f;
+    const float COUNTDOWN_DEFAULT = 600f;
 
     public PlayerHealth playerHealth;
     public AvatarController player;
@@ -159,7 +159,27 @@ public class GameUI : MonoBehaviour
         ScoreSystem.LastScore = player.score;
         SceneManager.LoadScene("Gameover");
 
+	}
+
+    public void Captured()
+    {
+        if (isPaused) TogglePause();
+        ScoreSystem.LastScore = player.score;
+        SceneManager.LoadScene("Captured");
+	}
+
+    public void SelfDestructTimer()
+    {
+		timeRemaining = 20f;
     }
+
+    public void Destroyed()
+    {
+        if (isPaused) TogglePause();
+        ScoreSystem.LastScore = player.score;
+        SceneManager.LoadScene("Destroyed");
+    }
+
     public void TogglePause()
     {
         if (isPaused)

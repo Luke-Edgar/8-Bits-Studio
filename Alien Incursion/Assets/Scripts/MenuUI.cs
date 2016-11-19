@@ -64,7 +64,7 @@ public class MenuUI : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+		System.Diagnostics.Process.GetCurrentProcess().Kill();
     }
 
     private void Show(CanvasGroup cg)

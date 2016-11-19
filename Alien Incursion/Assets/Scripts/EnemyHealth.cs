@@ -16,6 +16,8 @@ public class EnemyHealth : MonoBehaviour {
     public bool itemDrops = true;
 	public bool doubleJumpDrop = false;
 	public bool armorUpgradeDrop = false;
+	public bool keycardDrop = false;
+	public bool selfDestructDrop = false;
 
     private float lastHitCounter;
     private bool showHealthBar = true;
@@ -72,10 +74,16 @@ public class EnemyHealth : MonoBehaviour {
 	{
 		if (itemDrops) {
 			itemDrop.DropItem ();
-		} else if (doubleJumpDrop) {
+		}
+
+		if (doubleJumpDrop) {
 			upgradeDrop.DropDoubleJump ();
 		} else if (armorUpgradeDrop) {
 			upgradeDrop.DropArmourUpgrade ();
+		} else if (keycardDrop) {
+			upgradeDrop.DropKeycard ();
+		} else if (selfDestructDrop) {
+			upgradeDrop.DropSelfDestruct ();
 		}
 
 		Destroy (this.gameObject);
